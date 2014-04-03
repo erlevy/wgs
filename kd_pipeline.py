@@ -6,7 +6,7 @@
 # Filename: kd_pipeline.py
 # Purpose: To generate a vcf file with SNPs from fastq raw reads.
 #
-#
+# kd_p_v3_2.py
 
 
 #####################################################

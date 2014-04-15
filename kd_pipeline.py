@@ -21,7 +21,7 @@ from time import time
 # print usage statement
 if len(sys.argv) < 8:
 	print "--- usage: python kd_pipeline.py <GATK_path> <Picard_path> <snpEff_path> <ref.fa> <reads1.fastq> <reads2.fastq> <known_sites.vcf> <create new folder? 0/1>"
-	print "version: 3.0"
+	print "version: 3.2"
 	print "Improved in this version:\n- aln/sampe.\n- output files in own subdirectory\n- Validation Stringency is lenient\n- Readgroups added with AddOrReplaceReadGroups rather than bwa\n- automatic logfile in addition to stdout log\n- Mulitple performance options, tailored to each tool\n- file sizes printed"
 	sys.exit(1)
 
@@ -254,15 +254,15 @@ prnt("")
 prnt ("-" * 40)
 prnt("Aligning reads with reference...")
 
-#reads1_sai = working_dir + reads1.split("/")[-1] + ".sai"
-#if not file_exists(reads1_sai):
-#	call(["bwa", "aln", "-t"+threads_high,"-f", reads1_sai, ref+".fa", reads1])
-#print_size(reads1_sai)
-#
-#reads2_sai = working_dir + reads2.split("/")[-1] + ".sai"
-#if not file_exists(reads2_sai):
-#	call(["bwa", "aln", "-t"+threads_high,"-f", reads2_sai, ref+".fa", reads2])
-#print_size(reads2_sai)
+reads1_sai = working_dir + reads1.split("/")[-1] + ".sai"
+if not file_exists(reads1_sai):
+	call(["bwa", "aln", "-t"+threads_high,"-f", reads1_sai, ref+".fa", reads1])
+print_size(reads1_sai)
+
+reads2_sai = working_dir + reads2.split("/")[-1] + ".sai"
+if not file_exists(reads2_sai):
+	call(["bwa", "aln", "-t"+threads_high,"-f", reads2_sai, ref+".fa", reads2])
+print_size(reads2_sai)
 
 
 ###-----
